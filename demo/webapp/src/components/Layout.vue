@@ -32,7 +32,8 @@
           <div class="lev2-box res-clearfix">
             <dl v-if="item.children" v-for="lev2 in item.children" :key="lev2.id">
               <dt >{{lev2.name}}</dt>
-              <dd v-for="lev3 in lev2.children" :key="lev3.id"><a>{{lev3.name}}</a></dd>
+              
+              <dd v-for="lev3 in lev2.children" :key="lev3.id"><router-link :to="{path:lev3.url}">{{lev3.name}}</router-link></dd>
             </dl>
           </div>
         </div>
@@ -42,7 +43,9 @@
 
   <section :style="{height: winHight}">
     <div class="content">
-
+      <keep-alive>
+      <router-view></router-view>
+      </keep-alive>
     </div>
   </section>
   </div>
@@ -60,13 +63,13 @@ let menuListStr = [
             fjd: "lljkmanage",
             name: "网络故障诊断",
             id: "wlgzzd_node",
-            url: "xxx"
+            url: "test"
           },
           {
             fjd: "lljkmanage",
             name: "网络实时监测",
             id: "wlssjc_node",
-            url: "xxx"
+            url: "test2"
           },
           {
             fjd: "lljkmanage",
@@ -499,7 +502,7 @@ export default {
         backgroundImage: "url(" + require("../assets/images/logo1.png") + ")"
       },
       menuList: menuListStr,
-       winHight: (window.innerHeight - 60) + 'px'
+       winHight: (window.innerHeight - 50) + 'px'
     };
   },
   methods: {
@@ -519,7 +522,7 @@ export default {
     // 注：window.onresize只能在项目内触发1次
     window.onresize = function () {
         // 通过捕获系统的onresize事件触发我们需要执行的事件
-        this.winHight = (window.innerHeight - 60) + 'px';
+        this.winHight = (window.innerHeight - 50) + 'px';
     }
   },
 };
@@ -568,8 +571,8 @@ nav .nav-list> li{position: relative;cursor:pointer;}
 nav .nav-list> li:hover,nav .nav-list> li.active{background: rgba(32, 138, 90, .8);transition: all .3s ease;}
 nav .nav-list> li::before{content: ""; position: absolute;z-index: 1; left: 0; top: 51%; bottom: 51%; background: #ea9108;width: 3px; -webkit-transition-property: top, bottom; transition-property: top, bottom; -webkit-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out;}
 nav .nav-list> li:hover::before,nav .nav-list> li.active::before{ top: 0;bottom: 0;}
-nav .accordion-item{width: 50px;background: rgba(32, 138, 90, .8);}
-nav .accordion-bar{white-space: nowrap;height: 40px;overflow: hidden;background: #399e71;}
+nav .accordion-item{width: 50px;/*background: rgba(32, 138, 90, .8);*/} 
+nav .accordion-bar{white-space: nowrap;height: 40px;overflow: hidden;/* background: #399e71; */}
 nav .nav-list> li:hover .accordion-bar{background: rgba(32, 138, 90, .8);transition: all .3s ease;}
 nav .accordion-bar .nav-icon{position: absolute;z-index: 1; width: 50px;height: 40px; line-height: 40px;text-align: center;}
 nav .lev1-name{width: 100%;line-height: 40px;font-size: 16px; color: #fff;padding-left: 70px;}
@@ -578,7 +581,7 @@ nav .lev2-box dl{float: left;width: 140px;margin-bottom: 10px;}
 nav .lev2-box dl dt{line-height: 14px;margin-bottom: 5px;}
 nav .lev2-box dl dd{line-height: 24px;}
 
-nav.close .nav-list .accordion-item:hover{width: 500px; transition: all .3s;}
+nav.close .nav-list .accordion-item:hover{width: 500px;background: rgba(32, 138, 90, .8); transition: all .3s;}
 nav.close .nav-list .accordion-item:hover .lev2-box{width: 450px;height: 260px; padding: 15px;box-shadow: 3px 5px 10px rgba(0,0,0,.4); transition: height .6s ease;}
 
 
@@ -590,6 +593,6 @@ nav.open li.active .lev2-box{position:static;width: 100%;height: 200px;padding: 
 nav.open .lev2-box dl{float: none;margin-left: 36px;}
 
 
-section{position: fixed;top: 50px;left: 0;width: 100%; background: #eee;}
+section{position: fixed;top: 50px;left: 0;width: 100%;padding-left: 50px; background: #eee;}
 .content{width: 100%;height: 100%;}
 </style>
