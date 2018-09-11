@@ -9,7 +9,7 @@
       北京市副中心物联网管理平台
     </div>
     <ul class="user-nav res-fr res-clearfix">
-      <li><a>首页</a></li>
+      <li><router-link :to="{path:'/HelloWord'}">首页</router-link></li>
       <li><a>消息</a></li>
       <li>
         <a>用户</a>
@@ -493,7 +493,10 @@ let menuListStr = [
   }
 ];
 export default {
-  name: "Layout",
+  name: "LayOut",
+  components:{
+
+  },
   data() {
     return {
       isMenuOpen: false,

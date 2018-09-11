@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        123456
+        test2
     </div>
 </template>
 <script>
