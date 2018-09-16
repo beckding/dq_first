@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello res-mt30">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -91,8 +91,11 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Hellow World! 我是首页！'
     }
+  },
+  methods:{
+
   }
 }
 </script>
@@ -113,4 +116,5 @@ li {
 a {
   color: #42b983;
 }
+.hello{text-align: center;}
 </style>

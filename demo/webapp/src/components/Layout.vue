@@ -6,7 +6,7 @@
     </div>
 
     <div :style="backgroundLogo" class="logo-box res-fl">
-      北京市副中心物联网管理平台
+      物联网管理平台
     </div>
     <ul class="user-nav res-fr res-clearfix">
       <li><router-link :to="{path:'/HelloWord'}">首页</router-link></li>
@@ -41,13 +41,13 @@
     </ul>
   </nav>
 
-  <section :style="{height: winHight}">
+  <!-- <section :style="{height: winHight}">
     <div class="content">
       <keep-alive>
       <router-view></router-view>
       </keep-alive>
     </div>
-  </section>
+  </section> -->
   </div>
 </template>
 
