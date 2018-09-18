@@ -1,9 +1,5 @@
 <template>
   <header class="res-clearfix">
-    <div class="nav-ctl res-fl" @click="toggleNav">
-      菜单
-    </div>
-
     <div :style="backgroundLogo" class="logo-box res-fl">
       物联网管理平台
     </div>
@@ -45,12 +41,6 @@ export default {
     };
   },
   methods: {
-    toggleNav: function() {
-      this.isMenuOpen = !this.isMenuOpen;
-      if (this.isMenuOpen == false) {
-        this.isIndex = -1;
-      }
-    }
   }
 };
 </script>
@@ -62,15 +52,9 @@ header {
   background: #42b983;
   color: #fff;
   z-index: 99;
+  padding-left: 50px;
 }
-.nav-ctl {
-  height: 50px;
-  width: 50px;
-  line-height: 50px;
-  background: #399e71;
-  cursor: pointer;
-  text-align: center;
-}
+
 .logo-box {
   height: 50px;
   background-size: 33px;

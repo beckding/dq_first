@@ -1,7 +1,10 @@
 <template>
 <nav class="animated" :class = "[ isMenuOpen ? 'open' : 'close' ]">
+   <div class="nav-ctl res-fl" @click="toggleNav">
+        {{toChild}}
+    </div>
     <ul class="nav-list">
-      <li v-for="(item, index) in menuList" :key="item.id" :class="{ active:isIndex==index }" @click.stop="toggleNavList(index)">
+      <li v-for="(item, index) in menuList" :key="item.id" :class="{ active:curIndex==index }" @click.stop="toggleNavList(index)">
         <div class="accordion-item">
           <div class="accordion-bar">
             <span class="nav-icon">图标</span>
@@ -462,13 +465,13 @@ let menuListStr = [
 ];
 export default {
   name: "LeftNav",
+  props:[
+    'to-child',
+  ],
   data() {
     return {
+      curIndex:-1,
       isMenuOpen: false,
-      isIndex: -1,
-      backgroundLogo: {
-        backgroundImage: "url(" + require("../assets/images/logo1.png") + ")"
-      },
       menuList: menuListStr,
       winHight: window.innerHeight - 50 + "px"
     };
@@ -477,20 +480,14 @@ export default {
     toggleNav: function() {
       this.isMenuOpen = !this.isMenuOpen;
       if (this.isMenuOpen == false) {
-        this.isIndex = -1;
+        this.curIndex = -1;
       }
     },
     toggleNavList: function(index, evnet) {
-      this.isIndex != index ? (this.isIndex = index) : (this.isIndex = -1);
+        this.curIndex != index ? (this.curIndex = index) : (this.curIndex = -1);
+        this.$emit('change-index',this.curIndex);//回传给父组件
       // event.target.parent
     }
-  },
-  mounted() {
-    // 注：window.onresize只能在项目内触发1次
-    window.onresize = function() {
-      // 通过捕获系统的onresize事件触发我们需要执行的事件
-      this.winHight = window.innerHeight - 50 + "px";
-    };
   }
 };
 </script>
@@ -503,9 +500,26 @@ nav {
   height: 100%;
   color: #fff;
   padding-top: 50px;
-  z-index: 9;
-  background: rgba(32, 138, 90, 0.8); /*transform: translate3d(-100%,0,0);*/
+  z-index: 99;
+   /*transform: translate3d(-100%,0,0);*/
   transition: all 0.3s ease;
+}
+.nav-ctl {
+  position: absolute;
+  top:0px;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  background: #399e71;
+  cursor: pointer;
+  text-align: center;
+}
+.nav-ctl:hover{
+  background: rgba(32, 138, 90, 1);
+}
+nav ul.nav-list{
+height: 100%;
+background: rgba(32, 138, 90, 1);
 }
 nav .nav-list > li {
   position: relative;

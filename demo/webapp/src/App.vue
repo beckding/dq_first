@@ -3,11 +3,15 @@
     <!-- <img src="./assets/logo.png"> -->
     <!-- <router-view></router-view> -->
     <!-- <lay-out></lay-out> -->
+    <!-- 头部 -->
     <top-header>
       <p class="res-red">我来自父级页面</p>
       <p class="res-yellow" slot="slot1">我来自父级页面，并且我有名字,我叫slot1</p>
     </top-header>
-    <left-nav></left-nav>
+
+    <!-- 左侧菜单 -->
+    <!-- 父子组件动态属性传递 toChild  属性名：isMenuOpen驼峰命名转换-->
+    <left-nav :to-child="toChild"  @change-index="getCurIndex"></left-nav>
     <section :style="{height: winHight}">
       <div class="content">
         <keep-alive>
@@ -32,16 +36,18 @@ export default {
   },
   data() {
     return {
-      // isMenuOpen: false,
-      // isIndex: -1,
-      // backgroundLogo: {
-      //   backgroundImage: "url(" + require("./assets/images/logo1.png") + ")"
-      // },
-      // menuList: menuListStr,
+      toChild: '菜单',
       winHight: window.innerHeight - 50 + "px"
     };
   },
   methods: {
+    // toggleNav: function() {
+    //   this.isMenuOpen = !this.isMenuOpen;
+    // },
+    //子组件回传
+    getCurIndex:function(curNavIndex){
+      // alert(curNavIndex);
+    }
   },
   mounted() {
     // 注：window.onresize只能在项目内触发1次
